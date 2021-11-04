@@ -9,18 +9,12 @@ def index():
     print("******** in index *******************")
     return render_template("index.html")
 
-@app.route('/users')                                                    # Read All Users Page
-def users():
-    print("**** Retrieving Users *******************")
-    all_users = Users.get_all()                                         # Get all instances of users from the database
-    for idx in range(len(all_users)):
-        print(f"Index: {idx} ::: User Name: {all_users[idx].first_name} {all_users[idx].last_name}")
-    return render_template("read_all.html", all_users = all_users)
-
-@app.route('/users/new')                                                # Create New Users Page
+@app.route('/users/new')                                                # Create 1 New Users Page
 def users_new():
     print("******** in New Users *******************")
     return render_template("create.html")
+
+# //// CREATE ////////////////////////////////////
 
 @app.route('/users/new/post', methods=['POST'])                         # Retrieve the input values from create form
 def users_new_post():
@@ -33,6 +27,33 @@ def users_new_post():
     print(data)
     Users.save(data)                                                    # Insert data retrieved into users database
     return redirect("/users")
+
+# //// RETRIEVE ////////////////////////////////////
+
+@app.route('/users')                                                    # Read All Users Page
+def users():
+    print("**** Retrieving Users *******************")
+    all_users = Users.get_all()                                         # Get all instances of users from the database
+    for idx in range(len(all_users)):
+        print(f"Index: {idx} ::: User Name: {all_users[idx].first_name} {all_users[idx].last_name}")
+    return render_template("read_all.html", all_users = all_users)
+
+@app.route('/users/<int:id>')
+def users_id (id):
+    data = {
+        'id': id
+    }
+    user = Users.get_one(data)
+    print ("*********** In users id ******************")
+    print(user)
+    return render_template("users_read_one.html", user=user)
+
+# //// UPDATE ////////////////////////////////////
+
+# //// DELETE ////////////////////////////////////
+
+
+
 
 
 # @app.route('/create_friend', methods=["POST"])

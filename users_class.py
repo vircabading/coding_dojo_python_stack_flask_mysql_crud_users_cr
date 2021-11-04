@@ -26,6 +26,20 @@ class Users:
         for class_instance in results:                                  # Iterate over the db results and create instances of the cls objects
             list_of_instances.append( cls(class_instance) )             # Add each instance of the class to the list of instances
         return list_of_instances
+    
+    # **** Get One Class Method *******************************************
+    # @Returns: an instance of the class
+    @classmethod
+    def get_one(cls, data:dict):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+
+        result = connectToMySQL(target_db).query_db(query, data)             # Call the connectToMySQL function with the target db
+
+        print("**** In Users Class Get All ****")
+        print(result[0])
+        # print(f"Result = {result.id} {result.first_name} {result.last_name}")
+
+        return cls(result[0])
 
     # **** Insert One Method ***********************************************
     # @returns ID of created user

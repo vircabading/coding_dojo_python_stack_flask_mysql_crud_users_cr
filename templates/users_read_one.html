@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/css_lib.css') }}"> -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Users Database</title>
+</head>
+<body>
+  <!-- //// HEADER //////// -->
+  <header>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand d-flex align-items-center">
+          <strong>Users Database</strong>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+  
+  <!-- //// MAIN AREA //////// -->
+  <main role="main">
+    <div class="container">
+      <h1>
+        All Users
+      </h1>
+      <table class="tbl">
+        <tr>
+          <th>ID</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Created At</th>
+          <th>Actions</th>
+        </tr>
+        <tr>
+        <td>{{ user.id }}</td>
+        <td>{{ user.first_name }} {{ user.last_name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.created_at }}</td>
+        <td>
+            <a href="/users/{{user.id}}">Show</a> | 
+            <a href="/users/{{user.id}}/edit">Edit</a> | 
+            <a href="/users/{{user.id}}/destroy">Delete</a>
+        </td>
+        </tr>
+      </table>
+      <a id="add-new-user-btn" href="/users/new">Add a New User</a>
+    </div>
+  </main>
+</body>
+</html>
