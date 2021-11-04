@@ -14,11 +14,11 @@ def index():
 @app.route('/users')                                                    # Read All Users Page
 def users():
     print("**** Retrieving Users *******************")
-    all_user_instances = Users.get_all()                                # Get all instances of users from the database
-    for idx in range(len(all_user_instances)):
-        print(f"Index: {idx} ::: User Name: {all_user_instances[idx].first_name} {all_user_instances[idx].last_name}")
+    all_users = Users.get_all()                                # Get all instances of users from the database
+    for idx in range(len(all_users)):
+        print(f"Index: {idx} ::: User Name: {all_users[idx].first_name} {all_users[idx].last_name}")
 
-    return render_template("read_all.html", all_user_instances = all_user_instances)
+    return render_template("read_all.html", all_users = all_users)
 
 @app.route('/users/new')                                                # Create New Users Page
 def users_new():

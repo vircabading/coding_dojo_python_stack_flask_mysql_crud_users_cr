@@ -1,3 +1,22 @@
 main {
     margin: 20px 0px 0px 0px;
 }
+
+table {
+    width: inherit;
+}
+
+th, td {
+    padding: 5px;
+    text-align: center;
+}
+
+th {
+    background-color: darkslategray;
+    color: greenyellow;
+}
+
+td {
+    background-color: lightgrey;
+}
+

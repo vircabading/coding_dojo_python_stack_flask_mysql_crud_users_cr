@@ -30,6 +30,21 @@
       <h1>
         All Users
       </h1>
+      <table>
+        <tr>
+          <th><!--This is empty place holder--></th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+        {% for user in range(2) %}
+          <tr>
+            <td>{{ user }}</td>
+            <td>{{ all_users[user].first_name }}</td>
+            <td>{{ all_users[user].last_name }}</td>
+            <td>{{ all_users[user].email }}</td>
+          </tr>
+        {% endfor %}
     </div>
   </main>
 </body>
