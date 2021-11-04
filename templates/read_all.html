@@ -37,12 +37,12 @@
           <th>Last Name</th>
           <th>Email</th>
         </tr>
-        {% for user in range(users_length) %}
+        {% for user in all_users %}           <!-- when iterating list of dictionaries, get a dict as each user not an index! -->
           <tr>
-            <td>{{ user }}</td>
-            <td>{{ all_users[user].first_name }}</td>
-            <td>{{ all_users[user].last_name }}</td>
-            <td>{{ all_users[user].email }}</td>
+            <td>{{ user.id }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
           </tr>
         {% endfor %}
       </table>

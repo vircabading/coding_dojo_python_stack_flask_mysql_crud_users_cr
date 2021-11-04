@@ -15,7 +15,7 @@ def users():
     all_users = Users.get_all()                                         # Get all instances of users from the database
     for idx in range(len(all_users)):
         print(f"Index: {idx} ::: User Name: {all_users[idx].first_name} {all_users[idx].last_name}")
-    return render_template("read_all.html", all_users = all_users, users_length = len(all_users))
+    return render_template("read_all.html", all_users = all_users)
 
 @app.route('/users/new')                                                # Create New Users Page
 def users_new():
