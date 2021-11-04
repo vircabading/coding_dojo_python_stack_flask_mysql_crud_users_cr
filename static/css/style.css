@@ -36,3 +36,11 @@ main>.container {
     display: flex;
     flex-direction: column;
 }
+
+td>a {
+    background-color: darkslategray;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 20px;
+}
