@@ -27,9 +27,24 @@
   <!-- //// MAIN AREA //////// -->
   <main role="main">
     <div class="container">
-      <h1>
-        Add a New User
-      </h1>
+        <h1>
+            Add a New User
+        </h1>
+        <form action='/users/new/post' method='post'>
+            <div>
+                <label for=" first_name">First name:</label>
+                <input type="text" id="first_name" name="first_name">
+            </div>
+            <div>
+                <label for="last_name">Last name:</label>
+                <input type="text" id="last_name" name="last_name">
+            </div>
+            <div>
+                <label for="email">E-mail:</label>
+                <input type="text" id="email" name="email">
+            </div>
+            <input type="submit" value="Create">
+        </form>      
     </div>
   </main>
 </body>
