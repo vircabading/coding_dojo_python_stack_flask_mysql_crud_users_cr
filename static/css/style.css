@@ -20,3 +20,19 @@ td {
     background-color: lightgrey;
 }
 
+#add-new-user-btn {
+    font-style: normal;
+    background-color: darkslategray;
+    color: white;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 20px;
+    margin: 20px 0px 0px 0px;
+    width: 15%;
+    text-align: center;
+}
+
+main>.container {
+    display: flex;
+    flex-direction: column;
+}

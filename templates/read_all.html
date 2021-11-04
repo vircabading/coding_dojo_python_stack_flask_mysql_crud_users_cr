@@ -37,7 +37,7 @@
           <th>Last Name</th>
           <th>Email</th>
         </tr>
-        {% for user in range(2) %}
+        {% for user in range(users_length) %}
           <tr>
             <td>{{ user }}</td>
             <td>{{ all_users[user].first_name }}</td>
@@ -45,6 +45,8 @@
             <td>{{ all_users[user].email }}</td>
           </tr>
         {% endfor %}
+      </table>
+      <a id="add-new-user-btn" href="/users/new">Add a New User</a>
     </div>
   </main>
 </body>

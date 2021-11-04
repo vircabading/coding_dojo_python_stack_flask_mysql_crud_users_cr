@@ -28,8 +28,9 @@ class Users:
         return list_of_instances
 
     # **** Insert One Method ***********************************************
-    # @classmethod
-    # def save(cls, data ):
-    #     query = "INSERT INTO friends ( first_name , last_name , occupation , created_at, updated_at ) VALUES ( %(first_name)s , %(last_name)s , %(occupation)s , NOW() , NOW() );"
-    #     # data is a dictionary that will be passed into the save method from server.py
-    #     return connectToMySQL(target_db).query_db( query, data )
+    # @returns ID of created user
+    @classmethod
+    def save(cls, data ):
+        query = "INSERT INTO users ( first_name , last_name , email) VALUES ( %(first_name)s , %(last_name)s , %(email)s );"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL(target_db).query_db( query, data )
