@@ -1,24 +1,26 @@
 from flask import Flask, render_template, session, redirect, request
-
+from users_class import Users                                           # Impo
 
 app = Flask(__name__)
-app.secret_key = "TiYSKDNRitA!"                                                     # This is Your Secret Key Do Not Reveal it to Anyone!
+app.secret_key = "TiYSKDNRitA!"                                         # This is Your Secret Key Do Not Reveal it to Anyone!
 
-@app.route('/')                                                                     # Main Page
+@app.route('/')                                                         # Main Page
 def index():
     print("******** in index *******************")
 
 
     return render_template("index.html")
 
-@app.route('/users')                                                                # Read All Users Page
+@app.route('/users')                                                    # Read All Users Page
 def users():
-    print("******** in users *******************")
+    print("**** Retrieving Users *******************")
+    all_user_instances = Users.get_all()                                # Get all instances of users from the database
+    for idx in range(len(all_user_instances)):
+        print(f"Index: {idx} ::: User Name: {all_user_instances[idx].first_name} {all_user_instances[idx].last_name}")
 
+    return render_template("read_all.html", all_user_instances = all_user_instances)
 
-    return render_template("read_all.html")
-
-@app.route('/users/new')                                                            # Create New Users Page
+@app.route('/users/new')                                                # Create New Users Page
 def users_new():
     print("******** in New Users *******************")
 
