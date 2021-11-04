@@ -32,14 +32,9 @@ class Users:
     @classmethod
     def get_one(cls, data:dict):
         query = "SELECT * FROM users WHERE id = %(id)s;"
-
-        result = connectToMySQL(target_db).query_db(query, data)             # Call the connectToMySQL function with the target db
-
-        print("**** In Users Class Get All ****")
-        print(result[0])
-        # print(f"Result = {result.id} {result.first_name} {result.last_name}")
-
-        return cls(result[0])
+        result = connectToMySQL(target_db).query_db(query, data)        # Call the connectToMySQL function with the target db
+                                                                        # result is a list of a single dictionary
+        return cls(result[0])                                           # return an instance of the dictionary
 
     # **** Insert One Method ***********************************************
     # @returns ID of created user
