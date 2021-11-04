@@ -11,6 +11,20 @@ def index():
 
     return render_template("index.html")
 
+@app.route('/users')                                                                # Read All Users Page
+def users():
+    print("******** in users *******************")
+
+
+    return render_template("read_all.html")
+
+@app.route('/users/new')                                                            # Create New Users Page
+def users_new():
+    print("******** in New Users *******************")
+
+
+    return render_template("create.html")
+
 # @app.route('/create_friend', methods=["POST"])
 # def create_friend():
 #     # First we make a data dictionary from our request.form coming from our template.
