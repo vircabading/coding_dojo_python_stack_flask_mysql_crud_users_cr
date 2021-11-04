@@ -4,15 +4,26 @@ from users_class import Users                                           # Impo
 app = Flask(__name__)
 app.secret_key = "TiYSKDNRitA!"                                         # This is Your Secret Key Do Not Reveal it to Anyone!
 
+# //// SHOW /////////////////////////////////////
+
 @app.route('/')                                                         # Main Page
 def index():
     print("******** in index *******************")
     return render_template("index.html")
 
-@app.route('/users/new')                                                # Create 1 New Users Page
+@app.route('/users/new')                                                # **** FORM **** Create 1 New Users Page
 def users_new():
     print("******** in New Users *******************")
     return render_template("create.html")
+
+@app.route('/users/<int:id>/edit')                                      # **** FORM **** Edit 1 User Page
+def users_id_edit(id):
+    print("********* In Users ID Edit ****************")
+    context = {
+        'id' : id,
+    }
+    print(f"ID: {id}")
+    return render_template("users_id_edit.html", **context)
 
 # //// CREATE ////////////////////////////////////
 
@@ -49,6 +60,7 @@ def users_id (id):
     return render_template("users_read_one.html", user=user)
 
 # //// UPDATE ////////////////////////////////////
+
 
 # //// DELETE ////////////////////////////////////
 
