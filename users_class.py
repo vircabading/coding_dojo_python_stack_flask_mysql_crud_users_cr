@@ -12,7 +12,19 @@ class Users:
         self.email = data['email']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+
+    # //// CREATE //////////////////////////////////////////////////////////
+
+    # **** Insert One Method ***********************************************
+    # @returns ID of created user
+    @classmethod
+    def save(cls, data ):
+        query = "INSERT INTO users ( first_name , last_name , email) VALUES ( %(first_name)s , %(last_name)s , %(email)s );"
+        # data is a dictionary that will be passed into the save method from server.py
+        return connectToMySQL(target_db).query_db( query, data )
         
+    # //// RETRIEVE /////////////////////////////////////////////////////////
+
     # **** Get All Class Method *******************************************
     # @Returns: a list of instances of the class
     @classmethod
@@ -32,14 +44,22 @@ class Users:
     @classmethod
     def get_one(cls, data:dict):
         query = "SELECT * FROM users WHERE id = %(id)s;"
-        result = connectToMySQL(target_db).query_db(query, data)        # Call the connectToMySQL function with the target db
+        results = connectToMySQL(target_db).query_db(query, data)        # Call the connectToMySQL function with the target db
                                                                         # result is a list of a single dictionary
-        return cls(result[0])                                           # return an instance of the dictionary
+        return cls(results[0])                                           # return an instance of the dictionary
 
-    # **** Insert One Method ***********************************************
-    # @returns ID of created user
+    # //// UPDATE //////////////////////////////////////////////////////////
+
+    # **** Update One Class Method *****************************************
+    # @Returns: Nothing
     @classmethod
-    def save(cls, data ):
-        query = "INSERT INTO users ( first_name , last_name , email) VALUES ( %(first_name)s , %(last_name)s , %(email)s );"
-        # data is a dictionary that will be passed into the save method from server.py
-        return connectToMySQL(target_db).query_db( query, data )
+    def update_one(cls, data:dict):
+        query = "UPDATE users SET first_name=%(first_name)s, last_name=%(last_name)s, email=%(email)s   WHERE id=%(id)s"
+        print("***** IN UPDATE ONE *********************")
+        print("Running Query:",query)
+        results = connectToMySQL(target_db).query_db(query, data)
+        return None
+
+
+
+    # //// DELETE //////////////////////////////////////////////////////////

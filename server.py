@@ -1,4 +1,5 @@
 from flask import Flask, render_template, session, redirect, request
+from werkzeug import datastructures
 from users_class import Users                                           # Impo
 
 app = Flask(__name__)
@@ -19,11 +20,11 @@ def users_new():
 @app.route('/users/<int:id>/edit')                                      # **** FORM **** Edit 1 User Page
 def users_id_edit(id):
     print("********* In Users ID Edit ****************")
-    context = {
-        'id' : id,
+    data = {
+        'id': id
     }
-    print(f"ID: {id}")
-    return render_template("users_id_edit.html", **context)
+    user = Users.get_one(data)                                          # Retrieve an instance of the user with the given ID
+    return render_template("users_id_edit.html", user=user)
 
 # //// CREATE ////////////////////////////////////
 
@@ -41,6 +42,7 @@ def users_new_post():
 
 # //// RETRIEVE ////////////////////////////////////
 
+@app.route('/users/')
 @app.route('/users')                                                    # Read All Users Page
 def users():
     print("**** Retrieving Users *******************")
@@ -61,6 +63,17 @@ def users_id (id):
 
 # //// UPDATE ////////////////////////////////////
 
+@app.route('/users/<int:id>/edit/post', methods=['POST'])
+def users_id_edit_post(id):
+    print ("*********** In Users ID Edit POST *****************")
+    data = {
+        'id': id,
+        'first_name': request.form['first_name'],
+        'last_name': request.form['last_name'],
+        'email': request.form['email']
+    }
+    Users.update_one(data)
+    return redirect('/users')
 
 # //// DELETE ////////////////////////////////////
 
