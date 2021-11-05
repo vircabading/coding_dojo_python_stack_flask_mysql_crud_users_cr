@@ -17,14 +17,14 @@ def users_new():
     print("******** in New Users *******************")
     return render_template("create.html")
 
-@app.route('/users/<int:id>/edit')                                      # **** FORM **** Edit 1 User Page
-def users_id_edit(id):
+@app.route('/users/<int:id>/update')                                      # **** FORM **** Edit 1 User Page
+def users_id_updqte(id):
     print("********* In Users ID Edit ****************")
     data = {
         'id': id
     }
     user = Users.get_one(data)                                          # Retrieve an instance of the user with the given ID
-    return render_template("users_id_edit.html", user=user)
+    return render_template("users_id_update.html", user=user)
 
 # //// CREATE ////////////////////////////////////
 
@@ -63,8 +63,8 @@ def users_id (id):
 
 # //// UPDATE ////////////////////////////////////
 
-@app.route('/users/<int:id>/edit/post', methods=['POST'])
-def users_id_edit_post(id):
+@app.route('/users/<int:id>/update/post', methods=['POST'])
+def users_id_update_post(id):
     print ("*********** In Users ID Edit POST *****************")
     data = {
         'id': id,
@@ -77,9 +77,14 @@ def users_id_edit_post(id):
 
 # //// DELETE ////////////////////////////////////
 
-
-
-
+@app.route('/users/<int:id>/delete')
+def users_id_delete(id):
+    print("******** IN DELETE ********************")
+    data = {
+        'id': id
+    }
+    Users.delete(data)
+    return redirect('/users')
 
 # @app.route('/create_friend', methods=["POST"])
 # def create_friend():

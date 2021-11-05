@@ -30,11 +30,8 @@ class Users:
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM " + target_db +";"
-
         results = connectToMySQL(target_db).query_db(query)             # Call the connectToMySQL function with the target db
-        
         list_of_instances = []                                          # Initialize an empty list where we can store instances of the class
-        
         for class_instance in results:                                  # Iterate over the db results and create instances of the cls objects
             list_of_instances.append( cls(class_instance) )             # Add each instance of the class to the list of instances
         return list_of_instances
@@ -54,12 +51,16 @@ class Users:
     # @Returns: Nothing
     @classmethod
     def update_one(cls, data:dict):
-        query = "UPDATE users SET first_name=%(first_name)s, last_name=%(last_name)s, email=%(email)s   WHERE id=%(id)s"
-        print("***** IN UPDATE ONE *********************")
-        print("Running Query:",query)
+        query = "UPDATE users SET first_name=%(first_name)s, last_name=%(last_name)s, email=%(email)s WHERE id=%(id)s"
         results = connectToMySQL(target_db).query_db(query, data)
         return None
 
-
-
     # //// DELETE //////////////////////////////////////////////////////////
+
+    # **** Delete One Class Method *****************************************
+    # @Returns: Nothing
+    @classmethod
+    def delete(cls, data:dict):
+        query = "DELETE FROM users WHERE id=%(id)s"
+        results = connectToMySQL(target_db).query_db(query, data)
+        return None

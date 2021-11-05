@@ -16,9 +16,7 @@
         <a href="#" class="navbar-brand d-flex align-items-center">
           <strong>Users Database</strong>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="btn btn-primary" href="/users">HOME</a>
       </div>
     </div>
   </header>
@@ -29,7 +27,7 @@
         <h1>
             Edit User {{ user.id }} {{ user.first_name }} {{ user.last_name }}
         </h1>
-        <form action='/users/{{ user.id }}/edit/post' method='post'>
+        <form action='/users/{{ user.id }}/update/post' method='post'>
             <div>
                 <label class="form-label" for="first_name">First name:</label>
                 <input class="form-control" type="text" id="first_name" name="first_name">
