@@ -1,9 +1,10 @@
-from flask import Flask, render_template, session, redirect, request
-from werkzeug import datastructures
-from users_class import Users                                           # Impo
+from flask import render_template, session, redirect, request
+from flask_app import app                                               # Import flask app
 
-app = Flask(__name__)
-app.secret_key = "TiYSKDNRitA!"                                         # This is Your Secret Key Do Not Reveal it to Anyone!
+
+from users_class import Users                                           # Import
+
+
 
 # //// SHOW /////////////////////////////////////
 
