@@ -1,7 +1,7 @@
 # import the function that will return an instance of a connection ////////
-from mysqlconnection import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
 
-target_db = 'users'                                                     # Designates the database we are using
+TARGETDATABASE = 'users'                                                     # Designates the database we are using
 
 # //// USERS CLASS ////////////////////////////////////////////////////////
 class Users:
@@ -21,7 +21,7 @@ class Users:
     def save(cls, data ):
         query = "INSERT INTO users ( first_name , last_name , email) VALUES ( %(first_name)s , %(last_name)s , %(email)s );"
         # data is a dictionary that will be passed into the save method from server.py
-        return connectToMySQL(target_db).query_db( query, data )
+        return connectToMySQL(TARGETDATABASE).query_db( query, data )
         
     # //// RETRIEVE /////////////////////////////////////////////////////////
 
@@ -29,8 +29,8 @@ class Users:
     # @Returns: a list of instances of the class
     @classmethod
     def get_all(cls):
-        query = "SELECT * FROM " + target_db +";"
-        results = connectToMySQL(target_db).query_db(query)             # Call the connectToMySQL function with the target db
+        query = "SELECT * FROM " + TARGETDATABASE +";"
+        results = connectToMySQL(TARGETDATABASE).query_db(query)             # Call the connectToMySQL function with the target db
         list_of_instances = []                                          # Initialize an empty list where we can store instances of the class
         for class_instance in results:                                  # Iterate over the db results and create instances of the cls objects
             list_of_instances.append( cls(class_instance) )             # Add each instance of the class to the list of instances
@@ -41,7 +41,7 @@ class Users:
     @classmethod
     def get_one(cls, data:dict):
         query = "SELECT * FROM users WHERE id = %(id)s;"
-        results = connectToMySQL(target_db).query_db(query, data)        # Call the connectToMySQL function with the target db
+        results = connectToMySQL(TARGETDATABASE).query_db(query, data)        # Call the connectToMySQL function with the target db
                                                                         # result is a list of a single dictionary
         return cls(results[0])                                           # return an instance of the dictionary
 
@@ -52,7 +52,7 @@ class Users:
     @classmethod
     def update_one(cls, data:dict):
         query = "UPDATE users SET first_name=%(first_name)s, last_name=%(last_name)s, email=%(email)s WHERE id=%(id)s"
-        results = connectToMySQL(target_db).query_db(query, data)
+        results = connectToMySQL(TARGETDATABASE).query_db(query, data)
         return None
 
     # //// DELETE //////////////////////////////////////////////////////////
@@ -62,5 +62,5 @@ class Users:
     @classmethod
     def delete(cls, data:dict):
         query = "DELETE FROM users WHERE id=%(id)s"
-        results = connectToMySQL(target_db).query_db(query, data)
+        results = connectToMySQL(TARGETDATABASE).query_db(query, data)
         return None
