@@ -30,15 +30,15 @@
         <form action='/users/{{ user.id }}/update/post' method='post'>
             <div>
                 <label class="form-label" for="first_name">First name:</label>
-                <input class="form-control" type="text" id="first_name" name="first_name">
+                <input class="form-control" type="text" id="first_name" name="first_name" value="{{user.first_name}}">
             </div>
             <div>
                 <label class="form-label" for="last_name">Last name:</label>
-                <input class="form-control" type="text" id="last_name" name="last_name">
+                <input class="form-control" type="text" id="last_name" name="last_name" value="{{user.last_name}}">
             </div>
             <div>
                 <label class="form-label" for="email">E-mail:</label>
-                <input class="form-control" type="email" id="email" name="email">
+                <input class="form-control" type="email" id="email" name="email" value="{{user.email}}">
             </div>
             <hr>
             <input class="btn btn-primary" type="submit" value="Update">
